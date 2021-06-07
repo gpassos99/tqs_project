@@ -1,1 +1,0 @@
-# tqs_project
