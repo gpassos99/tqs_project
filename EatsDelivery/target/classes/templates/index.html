@@ -240,96 +240,36 @@
 
 		<!--products start -->
 		<section id="products" class="products">
-			<div class="container">
-				<div class="section-header">
-					<h2>Restaurants</h2>
-				</div><!--/.section-header-->
-				<div class="products-content">
-					<div class="row">
-						<div class="col-md-3 col-sm-4">
-							<div class="single-new-arrival">
-								<div class="single-new-arrival-bg">
-									<img th:src="@{/images/restaurants/pizzahut.png}" alt="products images">
-									<div class="single-new-arrival-bg-overlay"></div>
+				<div class="container">
+					<div class="section-header">
+						<h2>Restaurants</h2>
+					</div><!--/.section-header-->
+					<div class="products-content">
+						<div class="" th:each="restaurant : ${listRestaurants}" >
+							<div class="col-md-3 col-sm-4">
+									<div class="single-new-arrival">
+										<div class="single-new-arrival-bg">
+											<img th:src="${restaurant['image']}" alt="products images">
+											<div class="single-new-arrival-bg-overlay"></div>
 
-									<div class="new-arrival-cart">
-										<p>
-											<span class="lnr lnr-cart"></span>
-											<a th:href="@{/EatsDelivery/user}">place <span> </span> order</a>
-										</p>
-										<p class="arrival-review pull-right">
-											<span class="lnr lnr-heart"></span>
-											<span class="lnr lnr-frame-expand"></span>
-										</p>
+											<div class="new-arrival-cart">
+												<p>
+													<span class="lnr lnr-cart"></span>
+													<a type="submit" th:href="@{/EatsDelivery/user}">place <span> </span> order</a>
+												</p>
+												<p class="arrival-review pull-right">
+													<span class="lnr lnr-heart"></span>
+													<span class="lnr lnr-frame-expand"></span>
+												</p>
+											</div>
+										</div>
+										<h4><a href="#"><p th:text="${restaurant['RestaurantName']}"></p></a></h4>
 									</div>
 								</div>
-								<h4><a href="#">Pizza Hut</a></h4>
 							</div>
-						</div>
-						<div class="col-md-3 col-sm-4">
-							<div class="single-new-arrival">
-								<div class="single-new-arrival-bg">
-									<img th:src="@{/images/restaurants/mcdonalds.png}" alt="products images">
-									<div class="single-new-arrival-bg-overlay"></div>
-
-									<div class="new-arrival-cart">
-										<p>
-											<span class="lnr lnr-cart"></span>
-											<a th:href="@{/EatsDelivery/user}">place <span> </span> order</a>
-										</p>
-										<p class="arrival-review pull-right">
-											<span class="lnr lnr-heart"></span>
-											<span class="lnr lnr-frame-expand"></span>
-										</p>
-									</div>
-								</div>
-								<h4><a href="#">McDonalds</a></h4>
-							</div>
-						</div>
-						<div class="col-md-3 col-sm-4">
-							<div class="single-new-arrival">
-								<div class="single-new-arrival-bg">
-									<img th:src="@{/images/restaurants/kfc.png}" alt="products images">
-									<div class="single-new-arrival-bg-overlay"></div>
-									<div class="new-arrival-cart">
-										<p>
-											<span class="lnr lnr-cart"></span>
-											<a th:href="@{/EatsDelivery/user}">place <span> </span> order</a>
-										</p>
-										<p class="arrival-review pull-right">
-											<span class="lnr lnr-heart"></span>
-											<span class="lnr lnr-frame-expand"></span>
-										</p>
-									</div>
-								</div>
-								<h4><a href="#">KFC</a></h4>
-							</div>
-						</div>
-						<div class="col-md-3 col-sm-4">
-							<div class="single-new-arrival">
-								<div class="single-new-arrival-bg">
-									<img th:src="@{/images/restaurants/bk.jpg}" alt="products images">
-									<div class="single-new-arrival-bg-overlay"></div>
-
-									<div class="new-arrival-cart">
-										<p>
-											<span class="lnr lnr-cart"></span>
-											<a th:href="@{/EatsDelivery/user}">place <span> </span> order</a>
-										</p>
-										<p class="arrival-review pull-right">
-											<span class="lnr lnr-heart"></span>
-											<span class="lnr lnr-frame-expand"></span>
-										</p>
-									</div>
-								</div>
-								<h4><a href="#">Burger King</a></h4>
-
-							</div>
-						</div>
-					</div>
+					</div><!--/.container-->
 				</div>
-			</div><!--/.container-->
-		
+			</div>
 		</section><!--/.products-->
 		<!--products end -->
 
