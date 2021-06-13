@@ -1,12 +1,14 @@
 package TQSProject.EatsDelivery.controllers;
 
-import TQSProject.EatsDelivery.models.ActiveOrder;
+import TQSProject.EatsDelivery.models.Product;
 import TQSProject.EatsDelivery.services.ActiveOrderService;
+import TQSProject.EatsDelivery.services.ProductService;
 import TQSProject.EatsDelivery.services.RestaurantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 
@@ -14,10 +16,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class Controller {
 
     @Autowired
-    private RestaurantService restaurantService;
+    private ProductService productService;
 
     @Autowired
-    private ActiveOrderService activeOrderService;
+    private RestaurantService restaurantService;
+
 
     @GetMapping (value = "/EatsDelivery/home")
     public String index(Model model) {
@@ -25,15 +28,16 @@ public class Controller {
         return "index";
     }
 
+    @GetMapping (value = "/EatsDelivery/home/{restaurant_id}")
+    public String products_page(@PathVariable("restaurant_id") int RestaurantId, Model model) {
+        model.addAttribute("listProducts", productService.getProductById(RestaurantId));
+        return "products";
+    }
+
     @GetMapping (value = "/EatsDelivery/user")
     public String restaurant() {
         return "user";
     }
 
-    @PostMapping("/saveActiveOrder")
-    public String saveActiveOrder(@ModelAttribute("activeOrder") ActiveOrder activeOrder) {
-        activeOrderService.saveActiveOrder(activeOrder);
-        return "user";
-    }
 
 }
