@@ -15,4 +15,3 @@ QA Engineer - João Vasconcelos, Rita Ferrolho
 
 # Links
 
-https://www.pivotaltracker.com/n/projects/2502593
