@@ -1,5 +1,6 @@
-package com.example.estafeta.courier;
+package Project.estafeta.Models;
 
+import Project.estafeta.Repositories.CourierRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

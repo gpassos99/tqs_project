@@ -1,10 +1,13 @@
-package com.example.estafeta.courier;
+package Project.estafeta.Controllers;
 
-import com.example.estafeta.Order.Order;
-import com.example.estafeta.Order.OrderService;
+import Project.estafeta.Models.Order;
+import Project.estafeta.Services.CourierService;
+import Project.estafeta.Models.Courier;
+import Project.estafeta.Services.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
+import java.util.Queue;
+import java.util.PriorityQueue;
 import java.util.List;
 
 @RestController
@@ -14,27 +17,33 @@ public class CourierController {
     private final CourierService courierService;
     private final OrderService orderService;
 
+
     @Autowired
     public CourierController(CourierService courierService, OrderService orderService) {
         this.courierService = courierService;
         this.orderService = orderService;
+
     }
 
     //list of couriers
-    @GetMapping
+    @GetMapping(path = "/Couriers")
     public List<Courier> getCouriers(){
         return courierService.getCouriers();
     }
 
     //list of orders of a specific courier
-    @GetMapping(path = "/listOfOrders/{courierId}")
-    public List<Order> getCourierOrders(@PathVariable("courierId") Long courierId){
-        return orderService.getCourierOrders(courierId);
+    @GetMapping(path = "/Order/{courierId}")
+    public Order getCourierOrder(@PathVariable("courierId") Long courierId){
+        return orderService.getCourierOrder(courierId);
     }
 
-    //list of orders to accept
+    //receive order
+    @GetMapping(path = "/GetOrder")
+    public Order getOrder(){
+        return orderService.getOrder();
+    }
 
-    //info of accepted order
+
 
     //sign in de um courier
     @PostMapping

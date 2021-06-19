@@ -1,11 +1,11 @@
-package com.example.estafeta.courier;
+package Project.estafeta.Services;
 
+import Project.estafeta.Repositories.CourierRepository;
+import Project.estafeta.Models.Courier;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.time.LocalDate;
-import java.time.Month;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,7 +22,7 @@ public class CourierService {
     public void addNewCourier(Courier courier) {
         Optional<Courier> courierOptional = courierRepository.findCourierByEmail(courier.getEmail());
         if (courierOptional.isPresent()){
-            throw new IllegalStateException("email taken");
+            throw new IllegalStateException("email already being used");
         }
         courierRepository.save(courier);
     }
@@ -37,11 +37,14 @@ public class CourierService {
             throw new IllegalStateException("courier with id " + courierId + " does not exist");
         }
         courierRepository.deleteById(courierId);
-
-
     }
 
     @Transactional
     public void updateCourier(Long courierId, String name, String email) {
+        Optional<Courier> courierOptional = courierRepository.findCourierById(courierId);
+        if (courierOptional.isPresent()){
+            courierOptional.get().setName(name);
+            courierOptional.get().setEmail(email);
+        }
     }
 }

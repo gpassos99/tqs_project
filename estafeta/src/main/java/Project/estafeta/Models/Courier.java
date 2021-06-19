@@ -1,6 +1,5 @@
-package com.example.estafeta.courier;
+package Project.estafeta.Models;
 
-import com.example.estafeta.Order.Order;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.Period;
@@ -28,7 +27,10 @@ public class Courier {
     @Transient
     private int age;
 
-    public Courier() {
+    public Courier(String name, LocalDate birthdate, String email) {
+        this.name = name;
+        this.birthdate = birthdate;
+        this.email = email;
     }
 
     public Order getActiveOrder() {
@@ -37,19 +39,6 @@ public class Courier {
 
     public void setActiveOrder(Order activeOrder) {
         this.activeOrder = activeOrder;
-    }
-
-    public Courier(long id, String name, LocalDate birthdate, String email) {
-        this.id = id;
-        this.name = name;
-        this.birthdate = birthdate;
-        this.email = email;
-    }
-
-    public Courier(String name, LocalDate birthdate, String email) {
-        this.name = name;
-        this.birthdate = birthdate;
-        this.email = email;
     }
 
     public String getName() {

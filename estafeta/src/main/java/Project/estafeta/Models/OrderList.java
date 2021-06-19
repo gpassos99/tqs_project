@@ -1,4 +1,4 @@
-package com.example.estafeta.Order;
+package Project.estafeta.Models;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +9,10 @@ public class OrderList {
 
     public OrderList() {
         orders = new ArrayList<>();
+    }
+
+    public void addOrder(Order o) {
+        orders.add(o);
     }
 
     public List<Order> getOrders() {
