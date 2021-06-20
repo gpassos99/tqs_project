@@ -38,12 +38,10 @@ public class CourierController {
     }
 
     //receive order
-    @GetMapping(path = "/GetOrder")
-    public Order getOrder(){
-        return orderService.getOrder();
+    @GetMapping(path = "/GetOrder/{gpsCoordinates}")
+    public Order getOrder(@PathVariable("gpsCoordinates") float[] courierCoordinates){
+        return orderService.assignOrder(courierCoordinates);
     }
-
-
 
     //sign in de um courier
     @PostMapping

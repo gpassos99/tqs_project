@@ -1,15 +1,13 @@
 package Project.estafeta.Models;
 
+import java.util.Objects;
+
 public class Order {
 
     private long id;
-    private String client;
     private long courier_id;
-    private String[] value;
-    private float[] coordinatesPickUp = new float[2];
-    private float[] coordinatesClient = new float[2];
-    private String pickUp_name;
     private boolean active;
+    private OrderInfo info;
 
     public boolean isActive() {
         return active;
@@ -17,22 +15,6 @@ public class Order {
 
     public void setActive(boolean active) {
         this.active = active;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getClient() {
-        return client;
-    }
-
-    public void setClient(String client) {
-        this.client = client;
     }
 
     public long getCourier_id() {
@@ -43,28 +25,33 @@ public class Order {
         this.courier_id = courier_id;
     }
 
-    public String[] getValue() {
-        return value;
+    public long getId() {
+        return id;
     }
 
-    public void setValue(String[] value) {
-        this.value = value;
+    public void setId(long id) { this.id = id; }
+
+    public void set_info(OrderInfo info){
+        this.info = info;
     }
 
-    public String getPickUp_name() { return pickUp_name; }
-
-    public void setPickUp_name(String _name) {
-        this.pickUp_name = _name;
+    public OrderInfo get_info(){
+        return this.info;
     }
-
-    public void setCoordinatesPickUp(float[] coordinatesPickUp) { this.coordinatesPickUp = coordinatesPickUp; }
-
-    public void setCoordinatesClient(float[] coordinatesClient) { this.coordinatesClient = coordinatesClient; }
-
-    public float[] getCoordinatesPickUp() { return coordinatesPickUp; }
-
-    public float[] getCoordinatesClient() { return coordinatesClient; }
 
     public Order(){}
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Order)) return false;
+        Order order = (Order) o;
+        return id == order.id && courier_id == order.courier_id && active == order.active && Objects.equals(info, order.info);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, courier_id, active, info);
+    }
 }
 

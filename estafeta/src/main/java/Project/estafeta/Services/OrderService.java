@@ -8,6 +8,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.annotation.PostConstruct;
 import javax.swing.plaf.BorderUIResource;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Queue;
@@ -16,7 +17,8 @@ import java.util.Queue;
 public class OrderService{
 
         private UriComponentsBuilder builder;
-        private Queue<Order> orderQueue;
+        long id = 1;
+        private List orderList;
 
     @PostConstruct
         protected void init() {
@@ -26,17 +28,27 @@ public class OrderService{
                     .host("localhost/")
                     .path("/?????")
                     .queryParam("courier", "null");
-            orderQueue = new PriorityQueue<>();
+            orderList = new ArrayList<Order>();
         }
 
+        //Method to add an order to the orders queue
         public void addOrder(Order o){
-            orderQueue.add(o);
+            o.setId(id);
+            orderList.add(o);
+            id++;
         }
 
-        public Order getOrder(){
-            return orderQueue.poll();
+        //Retrieve the order with the best coordinates for the courier
+        public Order assignOrder(float[] coordinatesCourier){
+            return new Order();
         }
 
+        public List getAllOrders(){
+            return this.orderList;
+        }
+
+
+        //
         public Order getCourierOrder(Long courier_id) {
 
             String url = builder.replaceQueryParam("courier", courier_id.toString()).build().toUriString();

@@ -1,6 +1,7 @@
 package Project.estafeta.Controllers;
 
 import Project.estafeta.Models.Order;
+import Project.estafeta.Models.OrderInfo;
 import Project.estafeta.Services.CourierService;
 import Project.estafeta.Models.Courier;
 import Project.estafeta.Services.OrderService;
@@ -22,9 +23,16 @@ public class OrderController {
         this.orderService = orderService;
     }
 
-    //list of couriers
-    @PostMapping
-    public void addOrder(@RequestBody Order orderDetails){
-        return orderService.add();
+    //Add an order controller
+    @RequestMapping(value="/AddOrder",method=RequestMethod.POST)
+    public void addOrder(@RequestBody OrderInfo orderDetails){
+        Order orderX = new Order();
+        orderX.set_info(orderDetails);
+        orderService.addOrder(orderX);
+    }
+
+    @GetMapping(path = "/GetOrders")
+    public List getOrders(){
+        return orderService.getAllOrders();
     }
 }
