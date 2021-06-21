@@ -1,24 +1,23 @@
 package Project.estafeta.Services;
 
+import Project.estafeta.Models.Courier;
 import Project.estafeta.Models.Order;
 import Project.estafeta.Models.OrderList;
+import Project.estafeta.Repositories.OrderRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.annotation.PostConstruct;
 import javax.swing.plaf.BorderUIResource;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.PriorityQueue;
-import java.util.Queue;
+import java.util.*;
 
 @Service
 public class OrderService{
 
         private UriComponentsBuilder builder;
         long id = 1;
-        private List orderList;
+        private final OrderRepository orderRepository;
 
     @PostConstruct
         protected void init() {
@@ -28,25 +27,26 @@ public class OrderService{
                     .host("localhost/")
                     .path("/?????")
                     .queryParam("courier", "null");
-            orderList = new ArrayList<Order>();
+        }
+
+        public OrderService(OrderRepository orderRepository){
+            this.orderRepository = orderRepository;
         }
 
         //Method to add an order to the orders queue
         public void addOrder(Order o){
             o.setId(id);
-            orderList.add(o);
+            Optional<Order> orderOptional = orderRepository.findOrderById(id);
+            if (orderOptional.isPresent()){
+                throw new IllegalStateException("order already exists");
+            }
+            orderRepository.save(o);
             id++;
         }
 
-        //Retrieve the order with the best coordinates for the courier
-        public Order assignOrder(float[] coordinatesCourier){
-            return new Order();
-        }
-
         public List getAllOrders(){
-            return this.orderList;
+            return orderRepository.findAllOrders();
         }
-
 
         //
         public Order getCourierOrder(Long courier_id) {

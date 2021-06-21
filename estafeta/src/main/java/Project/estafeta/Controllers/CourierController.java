@@ -1,14 +1,14 @@
 package Project.estafeta.Controllers;
 
 import Project.estafeta.Models.Order;
+import Project.estafeta.Repositories.OrderRepository;
 import Project.estafeta.Services.CourierService;
 import Project.estafeta.Models.Courier;
 import Project.estafeta.Services.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import java.util.Queue;
-import java.util.PriorityQueue;
-import java.util.List;
+
+import java.util.*;
 
 @RestController
 @RequestMapping(path = "api/courier")
@@ -17,12 +17,10 @@ public class CourierController {
     private final CourierService courierService;
     private final OrderService orderService;
 
-
     @Autowired
-    public CourierController(CourierService courierService, OrderService orderService) {
+    public CourierController(CourierService courierService, OrderService orderService, OrderRepository orderRepository) {
         this.courierService = courierService;
         this.orderService = orderService;
-
     }
 
     //list of couriers
@@ -38,9 +36,9 @@ public class CourierController {
     }
 
     //receive order
-    @GetMapping(path = "/GetOrder/{gpsCoordinates}")
-    public Order getOrder(@PathVariable("gpsCoordinates") float[] courierCoordinates){
-        return orderService.assignOrder(courierCoordinates);
+    @GetMapping(path = "/GetOrder/{gpsCoordinates}/{courierId}")
+    public void getOrder(@PathVariable("gpsCoordinates") float[] courierCoordinates, @PathVariable("courierId") long courierId){
+        courierService.assignOrder(courierCoordinates, courierId);
     }
 
     //sign in de um courier
