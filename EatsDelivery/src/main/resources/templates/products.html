@@ -94,7 +94,7 @@
                       <h4>On top</h4>
                       <h2>Francesinha Especial</h2>
                       <p>
-                        Café Estrela
+                        CafÃ© Estrela
                       </p>
                       <div class="packages-price">
                         <p>
@@ -183,10 +183,13 @@
         <!-- Start Top Search -->
         <div class="top-search">
           <div class="container">
-            <div class="input-group">
+            <div class="input-group" >
               <span class="input-group-addon"><i class="fa fa-search"></i></span>
-              <input type="text" class="form-control" placeholder="Search">
-              <span class="input-group-addon close-search"><i class="fa fa-times"></i></span>
+              <input type="search" id="product_keyword" name="keyword" class="form-control" placeholder="Search">
+
+              <span class="input-group-addon close-search">
+                  <button onclick="search_bar()">Search</button>
+                </span>
             </div>
           </div>
         </div>
@@ -203,8 +206,26 @@
               <li class="nav-setting">
                 <a href="#"><span class="lnr lnr-cog"></span></a>
               </li><!--/.search-->
-
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" >
+                  <span class="lnr lnr-cart"></span>
+                  <span class="badge badge-bg-1" id="number_items_cart">0</span>
+                </a>
+                <ul class="dropdown-menu cart-list s-cate" id="cart_list_ul">
+                  <li class="total">
+                    <span>Total: </span>
+                    <span id="total_price" th:field="*{Price}">0.00</span>
+                    <button class="btn-cart pull-right" action="#" th:action="@{/create_order}" th:object="${order}" method="post">Confirm order</button>
+                  </li>
+                  <!--<li class="single-cart-list" id="cart_list">
+                    <div class="cart-close">
+                      <span class="lnr lnr-cross"></span>
+                    </div>&lt;!&ndash;/.cart-close&ndash;&gt;
+                  </li>-->
+                </ul>
+              </li><!--/.dropdown-->
             </ul>
+
           </div><!--/.attr-nav-->
           <!-- End Atribute Navigation -->
 
@@ -242,7 +263,7 @@
 <section id="products" class="products">
   <div class="container">
     <div class="section-header">
-      <h2>Restaurants</h2>
+      <h2>Products</h2>
     </div><!--/.section-header-->
     <div class="products-content">
       <div class="" th:each="products : ${listProducts}" >
@@ -255,7 +276,7 @@
               <div class="new-arrival-cart">
                 <p>
                   <span class="lnr lnr-cart"></span>
-                  <a type="submit" th:href="@{/EatsDelivery/home/{restaurant_id}}">place <span> </span> order</a>
+                  <button type="submit" th:data-parameter1="${products['Price']}" th:data-parameter2="${products['ProductName']}"  th:onclick="add_to_cart(this.getAttribute('data-parameter1'),this.getAttribute('data-parameter2'));">place <span> </span> order</button>
                 </p>
                 <p class="arrival-review pull-right">
                   <span class="lnr lnr-heart"></span>
@@ -264,6 +285,8 @@
               </div>
             </div>
             <h4><a href="#"><p th:text="${products['ProductName']}"></p></a></h4>
+            <h4><p id="product_price" style="visibility: hidden;" th:text="${products['Price']}"></p></h4>
+
           </div>
         </div>
       </div>
@@ -384,6 +407,35 @@
 
 <!--Custom JS-->
 <script type="text/javascript" th:src="@{/js/custom.js}"></script>
+
+<script>
+  let  total_products_price = 0;
+  let  number_products_cart = 0;
+
+  function add_to_cart(price, product_name, product_image) {
+    let cart_list_ul = document.getElementById("cart_list_ul");
+    let li = document.createElement("li");
+    li.appendChild(document.createTextNode(product_name +": " + price));
+    cart_list_ul.appendChild(li);
+
+    total_products_price = total_products_price + parseFloat(price);
+
+    document.getElementById("total_price").innerHTML = total_products_price;
+
+    number_products_cart = number_products_cart + 1
+
+    document.getElementById("number_items_cart").innerHTML = number_products_cart;
+
+  }
+
+  function search_bar() {
+    var keyword = document.getElementById("product_keyword").value;
+    console.log(keyword);
+    var separator = "/";
+    window.location.href = window.location.href + separator + keyword;
+  }
+
+</script>
 
 </body>
 
