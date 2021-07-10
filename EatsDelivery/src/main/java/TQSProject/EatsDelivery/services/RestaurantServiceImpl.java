@@ -17,4 +17,13 @@ public class RestaurantServiceImpl implements RestaurantService{
     public List<Restaurant> getAllRestaurants() {
         return restaurantRepository.findAll();
     }
+
+    //search bar
+    @Override
+    public List<Restaurant> searchRestaurant(String keyword) {
+        return restaurantRepository.searchRestaurant(keyword);
+
+    }
+
+
 }

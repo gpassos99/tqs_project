@@ -94,7 +94,7 @@
                       <h4>On top</h4>
                       <h2>Francesinha Especial</h2>
                       <p>
-                        CafÃ© Estrela
+                        Café Estrela
                       </p>
                       <div class="packages-price">
                         <p>
@@ -180,32 +180,10 @@
       <!-- Start Navigation -->
       <nav class="navbar navbar-default bootsnav  navbar-sticky navbar-scrollspy"  data-minus-value-desktop="70" data-minus-value-mobile="55" data-speed="1000">
 
-        <!-- Start Top Search -->
-        <div class="top-search">
-          <div class="container">
-            <div class="input-group" >
-              <span class="input-group-addon"><i class="fa fa-search"></i></span>
-              <input type="search" id="product_keyword" name="keyword" class="form-control" placeholder="Search">
-
-              <span class="input-group-addon close-search">
-                  <button onclick="search_bar()">Search</button>
-                </span>
-            </div>
-          </div>
-        </div>
-        <!-- End Top Search -->
-
-
         <div class="container">
           <!-- Start Atribute Navigation -->
           <div class="attr-nav">
             <ul>
-              <li class="search">
-                <a href="#"><span class="lnr lnr-magnifier"></span></a>
-              </li><!--/.search-->
-              <li class="nav-setting">
-                <a href="#"><span class="lnr lnr-cog"></span></a>
-              </li><!--/.search-->
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" >
                   <span class="lnr lnr-cart"></span>
@@ -263,7 +241,7 @@
 <section id="products" class="products">
   <div class="container">
     <div class="section-header">
-      <h2>Products</h2>
+      <h2>Search results for [[${keyword}]]</h2>
     </div><!--/.section-header-->
     <div class="products-content">
       <div class="" th:each="products : ${listProducts}" >
@@ -428,12 +406,7 @@
 
   }
 
-  function search_bar() {
-    var keyword = document.getElementById("product_keyword").value;
-    console.log(keyword);
-    var separator = "/";
-    window.location.href = window.location.href + separator + keyword;
-  }
+
 
 </script>
 

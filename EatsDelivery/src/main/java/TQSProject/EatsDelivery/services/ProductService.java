@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface ProductService {
 
-    List<Product> getProductById(int RestaurantId);
+    List<Product> getProductByRestaurantId(int RestaurantId);
     List<Product> getAllProducts();
+    List<Product> searchProduct(int RestaurantId, String keyword);
 }

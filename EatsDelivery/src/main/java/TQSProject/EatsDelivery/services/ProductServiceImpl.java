@@ -14,15 +14,21 @@ public class ProductServiceImpl implements ProductService{
     private ProductRepository productRepository;
 
     @Override
-    public List<Product> getProductById(int RestaurantId) {
+    public List<Product> getProductByRestaurantId(int RestaurantId) {
         System.out.println(RestaurantId);
-        return productRepository.findProductById(RestaurantId);
-
+        return productRepository.findProductByRestaurantId(RestaurantId);
     }
 
     @Override
     public List<Product> getAllProducts() {
         return productRepository.findAll();
     }
+
+    //search bar
+    @Override
+    public List<Product> searchProduct(int RestaurantId, String keyword) {
+        return productRepository.searchProduct(RestaurantId, keyword);
+    }
+
 
 }

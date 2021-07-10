@@ -180,17 +180,20 @@
 					<!-- Start Navigation -->
 				    <nav class="navbar navbar-default bootsnav  navbar-sticky navbar-scrollspy"  data-minus-value-desktop="70" data-minus-value-mobile="55" data-speed="1000">
 
-				        <!-- Start Top Search -->
-				        <div class="top-search">
-				            <div class="container">
-				                <div class="input-group">
-				                    <span class="input-group-addon"><i class="fa fa-search"></i></span>
-				                    <input type="text" class="form-control" placeholder="Search">
-				                    <span class="input-group-addon close-search"><i class="fa fa-times"></i></span>
-				                </div>
-				            </div>
-				        </div>
-				        <!-- End Top Search -->
+						<!-- Start Top Search -->
+						<div class="top-search">
+							<div class="container">
+								<div class="input-group" >
+									<span class="input-group-addon"><i class="fa fa-search"></i></span>
+									<input type="search" id="product_keyword" name="keyword" class="form-control" placeholder="Search">
+
+									<span class="input-group-addon close-search">
+										<button onclick="search_bar()">Search</button>
+                					</span>
+								</div>
+							</div>
+						</div>
+						<!-- End Top Search -->
 
 
 				        <div class="container">
@@ -255,7 +258,7 @@
 											<div class="new-arrival-cart">
 												<p>
 													<span class="lnr lnr-cart"></span>
-													<a th:href="@{'/EatsDelivery/home/' + ${restaurant['RestaurantId']}}">place <span> </span> order</a>
+													<a th:href="@{'/EatsDelivery/home/restaurants/' + ${restaurant['RestaurantId']}}">place <span> </span> order</a>
 
 												</p>
 												<p class="arrival-review pull-right">
@@ -385,7 +388,16 @@
 
         <!--Custom JS-->
         <script type="text/javascript" th:src="@{/js/custom.js}"></script>
-        
+
+		<script>
+			function search_bar() {
+   				var keyword = document.getElementById("product_keyword").value;
+				console.log(keyword);
+				var separator = "/";
+				window.location.href = window.location.href + separator + keyword;
+			  }
+		</script>
+
     </body>
 	
 </html>
