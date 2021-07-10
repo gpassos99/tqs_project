@@ -1,12 +1,15 @@
 package TQSProject.EatsDelivery.controllers;
 
+import TQSProject.EatsDelivery.models.User;
 import TQSProject.EatsDelivery.services.ProductService;
 import TQSProject.EatsDelivery.services.RestaurantService;
+import TQSProject.EatsDelivery.services.UserService;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 
 @org.springframework.stereotype.Controller
@@ -18,6 +21,58 @@ public class Controller {
     @Autowired
     private RestaurantService restaurantService;
 
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    JdbcTemplate jdbcTemplate;
+
+    @GetMapping (value = "")
+    public String login() {
+        return "login_client";
+    }
+
+    @GetMapping (value = "/register_client")
+    public String register(@ModelAttribute User user, Model model) {
+        model.addAttribute("user", user);
+        return "register_client";
+    }
+
+    @PostMapping(path = "/register_client")
+    public String addUser(User user) {
+
+        // insert query
+        String insert_query = "insert into users (userid,lat,lon,user_name,user_password)"
+                + " values(?,?,?,?,?);";
+
+        //returns no of rows inserted = 1
+        int rows = jdbcTemplate.update(insert_query,
+                user.getUserID(),
+                user.getUserLat(),
+                user.getUserLon(),
+                user.getUserName(),
+                user.getUserPassword());
+
+        if (rows == 1) {
+            return "redirect:/";
+        } else {
+            return "error";
+        }
+
+    }
+
+    @PostMapping(path = "/login_client")
+    public String loginUser_query(User user) {
+
+        if(userService.searchUser(user.getUserName(), user.getUserPassword())) {
+            return "redirect:/EatsDelivery/home";
+        }
+        else {
+            return "redirect:/";
+        }
+
+
+    }
 
     @GetMapping (value = "/EatsDelivery/home")
     public String index(Model model) {

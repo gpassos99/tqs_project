@@ -213,7 +213,7 @@
                 </a>
                 <ul class="dropdown-menu cart-list s-cate" id="cart_list_ul">
                   <li class="total">
-                    <span>Total: </span>
+                    <span>Total Price: </span>
                     <span id="total_price" th:field="*{Price}">0.00</span>
                     <button class="btn-cart pull-right" action="#" th:action="@{/create_order}" th:object="${order}" method="post">Confirm order</button>
                   </li>
