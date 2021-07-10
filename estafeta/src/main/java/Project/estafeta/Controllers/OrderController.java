@@ -2,8 +2,6 @@ package Project.estafeta.Controllers;
 
 import Project.estafeta.Models.Order;
 import Project.estafeta.Models.OrderInfo;
-import Project.estafeta.Services.CourierService;
-import Project.estafeta.Models.Courier;
 import Project.estafeta.Services.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -14,13 +12,11 @@ import java.util.List;
 @RequestMapping(path = "api/order")
 public class OrderController {
 
-
-    private final CourierService courierService;
+    @Autowired
     private final OrderService orderService;
 
     @Autowired
-    public OrderController(CourierService courierService, OrderService orderService) {
-        this.courierService = courierService;
+    public OrderController(OrderService orderService) {
         this.orderService = orderService;
     }
 

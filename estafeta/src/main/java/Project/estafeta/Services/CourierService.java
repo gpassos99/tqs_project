@@ -15,7 +15,10 @@ import java.util.Optional;
 @Service
 public class CourierService {
 
+    @Autowired
     private final CourierRepository courierRepository;
+
+    @Autowired
     private final OrderRepository orderRepository;
 
     @Autowired

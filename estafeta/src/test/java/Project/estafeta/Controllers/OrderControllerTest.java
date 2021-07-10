@@ -24,15 +24,10 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
-import org.junit.jupiter.api.Test;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import static org.junit.jupiter.api.Assertions.*;
 
 @WebMvcTest(OrderController.class)
 class OrderControllerTest {
 
-    private final ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
     private final ObjectMapper objectMapper = new ObjectMapper();
 
     @Autowired
@@ -104,6 +99,8 @@ class OrderControllerTest {
                 .content(objectMapper.writeValueAsString(test_order_details)))
                 .andExpect(status().isOk())
                 .andReturn();
+
+
     }
 
 }
