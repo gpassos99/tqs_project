@@ -1,11 +1,9 @@
 package Project.estafeta.Models;
 
 import javax.persistence.*;
-import java.time.LocalDate;
-import java.time.Period;
 
-@Entity(name = "courier")
-@Table(name = "courier")
+@Entity(name = "couriers")
+@Table(name = "couriers")
 public class Courier {
 
     @Id
@@ -24,26 +22,49 @@ public class Courier {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "birthdate")
-    private LocalDate birthdate;
-
     @Column(name = "email")
     private String email;
+
+    @Column(name = "password")
+    private String password;
+
     @Transient
     private Order activeOrder;
     @Transient
     private int age;
 
-    public Courier() {
 
+    public Courier() {
     }
 
-    public Courier(String name, LocalDate birthdate, String email) {
+    public Courier(int id, String email, String name, String password) {
+        this.id = id;
+        this.email = email;
         this.name = name;
-        this.birthdate = birthdate;
+        this.password = password;
+    }
+
+    public Courier(String name, String email) {
+        this.name = name;
         this.email = email;
     }
 
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public Order getActiveOrder() {
         return activeOrder;
@@ -61,20 +82,8 @@ public class Courier {
         this.name = name;
     }
 
-    public int getAge() {
-        return Period.between(this.birthdate, LocalDate.now()).getYears();
-    }
-
     public void setAge(int age) {
         this.age = age;
-    }
-
-    public LocalDate getBirthdate() {
-        return birthdate;
-    }
-
-    public void setBirthdate(LocalDate birthdate) {
-        this.birthdate = birthdate;
     }
 
     public String getEmail() {
@@ -91,7 +100,6 @@ public class Courier {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", age=" + age +
-                ", birthdate=" + birthdate +
                 ", email='" + email + '\'' +
                 '}';
     }

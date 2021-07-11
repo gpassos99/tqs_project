@@ -48,13 +48,13 @@ class CourierControllerTest {
     @BeforeEach
     void setup(){
         courierBirthday = LocalDate.of(1999, 01,02);
-        testCourier = new Courier("Zé", courierBirthday, "zecourier@gmail.com");
+        testCourier = new Courier("Zé", "zecourier@gmail.com");
     }
 
     @Test
     void if_there_are_multiple_couriers_get_couriers_will_return_all_couriers() throws Exception{
 
-        Courier testCourier2 = new Courier("Manuel", courierBirthday, "manuelcourier@gmail.com");
+        Courier testCourier2 = new Courier("Manuel", "manuelcourier@gmail.com");
         List<Courier> courierList = new ArrayList<>();
 
         courierList.add(testCourier2);
