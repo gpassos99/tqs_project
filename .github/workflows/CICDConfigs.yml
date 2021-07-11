@@ -27,9 +27,9 @@ jobs:
 
       # Runs static code analysis through SonarQube on courier app
       - name: Static Code Analysis on courier app
-        run: mvn -f /estafeta clean verify sonar:sonar -Dsonar.login=869414594979caa69b311d99b0227c4207e23358
+        run: mvn -f ./estafeta/pom.xml clean verify sonar:sonar -Dsonar.login=869414594979caa69b311d99b0227c4207e23358
 
       # Runs static code analysis through SonarQube on restaurant app
       - name: Static Code Analysis on restaurant app
         run: |
-          mvn -f /EatsDelivery clean verify sonar:sonar -Dsonar.login=869414594979caa69b311d99b0227c4207e23358
+          mvn -f ./EatsDelivery/pom.xml clean verify sonar:sonar -Dsonar.login=869414594979caa69b311d99b0227c4207e23358
