@@ -101,4 +101,23 @@ public class CourierService {
         return orderRepository.findOrderById(closest_id).get();
 
     }
+
+    public Courier save(Courier courier) {
+        return courierRepository.save(courier);
+    }
+
+
+    public boolean searchCourier(String email, String password) {
+
+        if (courierRepository.searchCourier(email, password).isPresent()){
+            System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAA");
+            return true;
+        }
+
+        else {
+            System.out.println("BBBBBBBBBBBBBBBBBBBBBBBB");
+            return false;
+        }
+
+    }
 }

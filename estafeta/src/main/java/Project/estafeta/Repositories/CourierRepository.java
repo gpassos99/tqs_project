@@ -2,9 +2,9 @@ package Project.estafeta.Repositories;
 
 import Project.estafeta.Models.Courier;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
-
 import java.util.Optional;
 
 @Repository
@@ -15,5 +15,14 @@ public interface CourierRepository extends JpaRepository<Courier, Long> {
 
     @Query(value = "select * from Couriers where courier_id like ?1", nativeQuery = true)
     Optional<Courier> findCourierById(Long id);
+
+    @Query(value = "select * from couriers where email like :email and password like :password", nativeQuery = true)
+    Optional<Courier> searchCourier(String email, String password);
+
+    /*
+    @Modifying
+    @Query(value = "insert into Couriers (id,birthdate,email,name) values (?1, ?2, ?3, ?4)", nativeQuery = true)
+    int save(long id, LocalDate Birthdate, String email, String name);
+    */
 }
 

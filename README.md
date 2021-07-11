@@ -13,5 +13,4 @@ Product Owner - Luís Valentim
 DevOps Master - Gonçalo Passos
 QA Engineer - João Vasconcelos, Rita Ferrolho
 
-# Links
 

@@ -6,12 +6,14 @@ import Project.estafeta.Services.CourierService;
 import Project.estafeta.Models.Courier;
 import Project.estafeta.Services.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
-@RestController
+@org.springframework.stereotype.Controller
+
 @RequestMapping(path = "api/courier")
 public class CourierController {
 
@@ -20,6 +22,9 @@ public class CourierController {
 
     @Autowired
     private final OrderService orderService;
+
+    @Autowired
+    JdbcTemplate jdbcTemplate;
 
     @Autowired
     public CourierController(CourierService courierService, OrderService orderServiceImpl, OrderRepository orderRepository) {
@@ -45,12 +50,6 @@ public class CourierController {
         courierService.assignOrder(courierCoordinates, courierId);
     }
 
-    //sign in de um courier
-    @PostMapping(path = "/Register")
-    public void registerNewCourier(@RequestBody Courier courier){
-        courierService.addNewCourier(courier);
-    }
-
     //delete account of courier
     @DeleteMapping(path = "/Delete/{courierId}")
     public void deleteCourier(@PathVariable("courierId") Long courierId){
@@ -61,6 +60,62 @@ public class CourierController {
     @PutMapping(path = "/Edit/{courierId}")
     public void updateCourier(@PathVariable("courierId") Long courierId, @RequestParam(required = false) String name, @RequestParam(required = false) String email){
         courierService.updateCourier(courierId,name,email);
+    }
+
+    //home page with login
+    @GetMapping (value = "")
+    public String login() {
+        return "login_courier";
+    }
+
+    @GetMapping (value = "/register_courier")
+    public String register(@ModelAttribute Courier courier, Model model) {
+        model.addAttribute("courier", courier);
+        System.out.println("GGGGGGGGGGGGGGG");
+
+        return "register_courier";
+    }
+
+    //sign in de um courier
+    @PostMapping(path = "/register_courier")
+    public String registerNewCourier(Courier courier){
+
+        // insert query
+
+        String insert_query = "insert into couriers (id,email,name,password)" + " values(?,?,?,?);";
+
+        //returns no of rows inserted = 1
+        int rows = jdbcTemplate.update(insert_query,
+                courier.getId(),
+                courier.getEmail(),
+                courier.getName(),
+                courier.getPassword());
+
+        if (rows == 1) {
+            return "redirect:/api/courier";
+        } else {
+            return "error";
+        }
+
+    }
+
+    @PostMapping(path = "/login_courier")
+    public String loginCourier(Courier courier) {
+
+        if(courierService.searchCourier(courier.getEmail(), courier.getPassword())) {
+            return "redirect:/api/courier/home";
+        }
+        else {
+            return "redirect:/";
+        }
+
+
+    }
+
+    //home page
+    @GetMapping (value = "/home")
+    public String home() {
+        return "home";
     }
 
   }
