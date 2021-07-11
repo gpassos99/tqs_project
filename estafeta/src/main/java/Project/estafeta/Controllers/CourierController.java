@@ -6,12 +6,13 @@ import Project.estafeta.Services.CourierService;
 import Project.estafeta.Models.Courier;
 import Project.estafeta.Services.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
-@RestController
+@Controller
 @RequestMapping(path = "api/courier")
 public class CourierController {
 
@@ -47,8 +48,14 @@ public class CourierController {
 
     //sign in de um courier
     @PostMapping(path = "/Register")
-    public void registerNewCourier(@RequestBody Courier courier){
+    public String registerNewCourier(@ModelAttribute Courier courier, Model model){
+        Courier courier2 = new Courier();
+
+        courier2.setName(courier.getName());
+        courier2.setEmail(courier.getEmail());
         courierService.addNewCourier(courier);
+        model.addAttribute("courier",courier);
+        return "redirect:/";
     }
 
     //delete account of courier
@@ -61,6 +68,17 @@ public class CourierController {
     @PutMapping(path = "/Edit/{courierId}")
     public void updateCourier(@PathVariable("courierId") Long courierId, @RequestParam(required = false) String name, @RequestParam(required = false) String email){
         courierService.updateCourier(courierId,name,email);
+    }
+
+    //home page with login
+    @GetMapping (value = "")
+    public String login() {
+        return "login_courier";
+    }
+
+    @GetMapping (value = "/register_courier")
+    public String register(Courier courier) {
+        return "register_courier";
     }
 
   }

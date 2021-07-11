@@ -4,8 +4,8 @@ import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.Period;
 
-@Entity
-@Table
+@Entity(name = "courier")
+@Table(name = "courier")
 public class Courier {
 
     @Id
@@ -18,20 +18,32 @@ public class Courier {
             strategy = GenerationType.SEQUENCE,
             generator = "courier_sequence"
     )
+
     private long id;
+
+    @Column(name = "name")
     private String name;
+
+    @Column(name = "birthdate")
     private LocalDate birthdate;
+
+    @Column(name = "email")
     private String email;
     @Transient
     private Order activeOrder;
     @Transient
     private int age;
 
+    public Courier() {
+
+    }
+
     public Courier(String name, LocalDate birthdate, String email) {
         this.name = name;
         this.birthdate = birthdate;
         this.email = email;
     }
+
 
     public Order getActiveOrder() {
         return activeOrder;

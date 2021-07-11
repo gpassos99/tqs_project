@@ -1,12 +1,23 @@
 package Project.estafeta.Models;
 
+import javax.persistence.*;
 import java.util.Objects;
 
+@Entity(name = "orders")
+@Table(name = "orders")
 public class Order {
 
+    @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private long id;
+
+    @Column(name = "Courier_id")
     private long courier_id;
+
+    @Column(name = "Active")
     private boolean active;
+
+    @Column(name = "OrderInfo")
     private OrderInfo info;
 
     public boolean isActive() {
