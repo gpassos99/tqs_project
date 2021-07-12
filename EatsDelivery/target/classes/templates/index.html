@@ -258,8 +258,9 @@
 											<div class="new-arrival-cart">
 												<p>
 													<span class="lnr lnr-cart"></span>
-													<a th:href="@{'/EatsDelivery/home/restaurants/' + ${restaurant['RestaurantId']}}">place <span> </span> order</a>
-
+													<!--<a th:href="@{'/EatsDelivery/home/restaurants/' + ${restaurant['RestaurantId']}}">place <span> </span> order</a>-->
+													<button type="submit" th:onclick="'javascript:changeUrl(\''+ ${restaurant['RestaurantId']} +'\');'">View <span> </span>products</button>
+													th:onclick="'javascript:changeUrl(\''+ ${a} +'\');'"
 												</p>
 												<p class="arrival-review pull-right">
 													<span class="lnr lnr-heart"></span>
@@ -396,6 +397,11 @@
 				var separator = "/";
 				window.location.href = window.location.href + separator + keyword;
 			  }
+
+			function changeUrl(restaurant_id) {
+			  	window.location.href = window.location.href + "/restaurants/" + restaurant_id;
+			}
+
 		</script>
 
     </body>

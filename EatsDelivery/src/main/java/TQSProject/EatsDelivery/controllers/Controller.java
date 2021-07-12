@@ -65,40 +65,44 @@ public class Controller {
     public String loginUser_query(User user) {
 
         if(userService.searchUser(user.getUserName(), user.getUserPassword())) {
-            return "redirect:/EatsDelivery/home";
+
+            String sql = "select user_name from users where user_name like ?";
+
+            String username = (String) jdbcTemplate.queryForObject(
+                    sql, new Object[] { user.getUserName() }, String.class);
+
+            return "redirect:" + username + "/EatsDelivery/home";
         }
         else {
             return "redirect:/";
         }
-
-
     }
 
-    @GetMapping (value = "/EatsDelivery/home")
-    public String index(Model model) {
+    @GetMapping (value = "/{username}/EatsDelivery/home")
+    public String index(@PathVariable String username, Model model) {
         model.addAttribute("listRestaurants", restaurantService.getAllRestaurants());
         return "index";
     }
 
-    @GetMapping (value = "/EatsDelivery/home/restaurants/{restaurant_id}")
-    public String products_page(@PathVariable("restaurant_id") int RestaurantId, Model model) {
+    @GetMapping (value = "{username}/EatsDelivery/home/restaurants/{restaurant_id}")
+    public String products_page(@PathVariable("username") String username, @PathVariable("restaurant_id") int RestaurantId, Model model) {
         model.addAttribute("listProducts", productService.getProductByRestaurantId(RestaurantId));
         return "products";
     }
 
-    @GetMapping (value = "/EatsDelivery/user")
+    @GetMapping (value = "{username}/EatsDelivery/user")
     public String restaurant() {
         return "user";
     }
 
-    @GetMapping (value = "/EatsDelivery/home/restaurants/{restaurant_id}/{keyword}")
+    @GetMapping (value = "{username}/EatsDelivery/home/restaurants/{restaurant_id}/{keyword}")
     public String search(@PathVariable int restaurant_id, @PathVariable String keyword, Model model) {
         model.addAttribute("listProducts", productService.searchProduct(restaurant_id, keyword));
         return "search_results";
     }
 
-    @GetMapping (value = "/EatsDelivery/home/{keyword}")
-    public String searchRestaurant(@PathVariable(value = "keyword", required = false) String keyword, Model model) {
+    @GetMapping (value = "{username}/EatsDelivery/home/{keyword}")
+    public String searchRestaurant(@PathVariable String username, @PathVariable(value = "keyword", required = false) String keyword, Model model) {
         model.addAttribute("listRestaurants", restaurantService.searchRestaurant(keyword));
         return "search_restaurants";
     }
