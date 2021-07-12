@@ -25,5 +25,8 @@ public interface OrderRepository extends JpaRepository<Order, Long>{
     @Query(value = "select * from orders where courier_id like :courier_id", nativeQuery = true)
     List<Order> findOrderCourier_id(Long courier_id);
 
+    @Query(value = "select * from orders where courier_id = 0", nativeQuery = true)
+    List<Order> findActiveOrders();
+
 
 }

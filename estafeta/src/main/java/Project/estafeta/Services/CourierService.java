@@ -110,14 +110,15 @@ public class CourierService {
     public boolean searchCourier(String email, String password) {
 
         if (courierRepository.searchCourier(email, password).isPresent()){
-            System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAA");
+            System.out.println(courierRepository.searchCourier(email, password));
             return true;
         }
 
         else {
-            System.out.println("BBBBBBBBBBBBBBBBBBBBBBBB");
             return false;
         }
 
     }
+
+
 }

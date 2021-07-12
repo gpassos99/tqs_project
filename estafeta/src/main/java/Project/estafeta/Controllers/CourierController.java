@@ -103,7 +103,12 @@ public class CourierController {
     public String loginCourier(Courier courier) {
 
         if(courierService.searchCourier(courier.getEmail(), courier.getPassword())) {
-            return "redirect:/api/courier/home";
+            String sql = "select id from couriers where email like ?";
+
+            String id = (String) jdbcTemplate.queryForObject(
+                    sql, new Object[] { courier.getEmail() }, String.class);
+            System.out.println(id);
+            return "redirect:/api/courier/home/" + id;
         }
         else {
             return "redirect:/";
@@ -113,16 +118,32 @@ public class CourierController {
     }
 
     //home page
-    @GetMapping (value = "/home")
+    @GetMapping (value = "/home/{courier_id}")
     public String home(Model model) {
-        model.addAttribute("listOrders", orderService.findAllOrders());
+        model.addAttribute("listActiveOrders", orderService.findActiveOrders());
         return "home";
     }
 
-    @GetMapping (value = "/home/{courier_id}")
+    @GetMapping (value = "/orders/{courier_id}")
     public String orderByCourier_page(@PathVariable("courier_id") Long courier_id, Model model) {
         model.addAttribute("listOrdersByCourier", orderService.getOrdersByCourierId(courier_id));
         return "previousOrders";
     }
+
+    @GetMapping (value = "/home/{courier_id_current}/{order_id}/{courier_id}")
+    public String acceptOrder(@PathVariable Long order_id, @PathVariable Long courier_id, @PathVariable Long courier_id_current, Model model) {
+        // insert query
+        String update_query = "update orders set courier_id = ?, active = 0 where id = ?";
+
+        //returns no of rows inserted = 1
+        int rows = jdbcTemplate.update(update_query, courier_id_current, order_id);
+
+        if (rows == 1) {
+            return "redirect:/api/courier/home/" + courier_id_current;
+        } else {
+            return "error";
+        }
+    }
+
 
   }

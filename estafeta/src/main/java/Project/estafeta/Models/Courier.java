@@ -5,7 +5,7 @@ import javax.persistence.*;
 @Entity(name = "couriers")
 @Table(name = "couriers")
 public class Courier {
-
+/*
     @Id
     @SequenceGenerator(
             name = "courier_sequence",
@@ -17,6 +17,9 @@ public class Courier {
             generator = "courier_sequence"
     )
 
+ */
+    @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private long id;
 
     @Column(name = "name")

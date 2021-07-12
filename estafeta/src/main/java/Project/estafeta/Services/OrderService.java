@@ -57,7 +57,10 @@ public class OrderService {
     }
 
     public List<Order> getOrdersByCourierId(Long courier_id) {
-        System.out.println(courier_id);
         return orderRepository.findOrderCourier_id(courier_id);
+    }
+
+    public List findActiveOrders() {
+        return orderRepository.findActiveOrders();
     }
 }

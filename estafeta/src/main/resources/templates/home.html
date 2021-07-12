@@ -5,24 +5,50 @@
     <title>Home</title>
 </head>
 <body>
-<h1>Active Orders</h1>
-<table>
-    <thead>
-    <tr>
-        <th> Title </th>
-        <th> Author </th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="orders : ${listOrders}">
-        <td><span th:text="${orders.id}"> Order ID </span></td>
-        <td><span th:text="${orders.courier_id}"> Courier ID </span></td>
-        <td><span th:action="${orders.courier_id}"> Courier ID </span></td>
+    <h1>Active Orders</h1>
+    <table>
+        <thead>
+        <tr>
+            <th> Order ID </th>
+            <th> Client </th>
+            <th> User Coordinates </th>
+            <th> Restaurant Coordinates</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="orders : ${listActiveOrders}">
+            <td><span id = "order_id" th:text="${orders.id}"> Order ID </span></td>
+            <td><span th:text="${orders.client}"> Client </span></td>
+            <td><span th:text="${orders.coordinatesClient}"> coordinatesClient </span></td>
+            <td><span th:text="${orders.coordinatesPickUp}"> coordinates_pick_up </span></td>
+            <td>
+                <button onclick="acceptOrder()">
+                    <i>Accept</i>
+                </button>
+            </td>
+        </tr>
+        </tbody>
 
-    </tr>
-    </tbody>
-</table>
+    </table>
+
+    <button onclick="history()">
+        <i>Orders History</i>
+    </button>
 
 
 </body>
+
+<script>
+    function acceptOrder() {
+        var order_id = document.getElementById("order_id").innerText;
+        var courier_id = document.getElementById("courier_id").innerText;
+        console.log(order_id);
+        var separator = "/";
+        window.location.href = window.location.href + separator + order_id + separator + courier_id;
+    }
+    function history() {
+        var url = window.location.toString();
+        window.location = url.replace(/home/, 'orders');
+    }
+</script>
 </html>

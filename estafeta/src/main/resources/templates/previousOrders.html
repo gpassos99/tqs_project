@@ -5,22 +5,36 @@
     <title>Home</title>
 </head>
 <body>
-<h1>Active Orders</h1>
+<h1>Orders History</h1>
 <table>
     <thead>
     <tr>
-        <th> Title </th>
-        <th> Author </th>
+        <th> Order ID </th>
+        <th> Client </th>
+        <th> User Coordinates </th>
+        <th> Restaurant Coordinates</th>
     </tr>
     </thead>
     <tbody>
     <tr th:each="orders : ${listOrdersByCourier}">
         <td><span th:text="${orders.id}"> Order ID </span></td>
-        <td><span th:text="${orders.courier_id}"> Courier ID </span></td>
+        <td><span th:text="${orders.client}"> Client </span></td>
+        <td><span th:text="${orders.coordinatesClient}"> coordinatesClient </span></td>
+        <td><span th:text="${orders.coordinatesPickUp}"> coordinates_pick_up </span></td>
     </tr>
     </tbody>
 </table>
 
+<button onclick="history()">
+    <i>Go Back</i>
+</button>
+
 
 </body>
+<script>
+    function history() {
+        var url = window.location.toString();
+        window.location = url.replace(/orders/, 'home');
+    }
+</script>
 </html>
