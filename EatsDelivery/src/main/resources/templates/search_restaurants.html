@@ -229,8 +229,7 @@
               <div class="new-arrival-cart">
                 <p>
                   <span class="lnr lnr-cart"></span>
-                  <a th:href="@{'/EatsDelivery/home/restaurants/' + ${restaurant['RestaurantId']}}">place <span> </span> order</a>
-
+                  <button type="submit" th:onclick="'javascript:changeUrl(\''+ ${restaurant['RestaurantId']} +'\');'">View <span> </span>products</button>
                 </p>
                 <p class="arrival-review pull-right">
                   <span class="lnr lnr-heart"></span>

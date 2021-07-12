@@ -130,8 +130,8 @@ public class CourierController {
         return "previousOrders";
     }
 
-    @GetMapping (value = "/home/{courier_id_current}/{order_id}/{courier_id}")
-    public String acceptOrder(@PathVariable Long order_id, @PathVariable Long courier_id, @PathVariable Long courier_id_current, Model model) {
+    @GetMapping (value = "/home/{courier_id_current}/{order_id}")
+    public String acceptOrder(@PathVariable Long order_id, @PathVariable Long courier_id_current, Model model) {
         // insert query
         String update_query = "update orders set courier_id = ?, active = 0 where id = ?";
 
