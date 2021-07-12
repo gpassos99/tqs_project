@@ -4,6 +4,7 @@ import Project.estafeta.Models.Order;
 import Project.estafeta.Models.OrderInfo;
 import Project.estafeta.Services.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,6 +21,7 @@ public class OrderController {
         this.orderService = orderService;
     }
 
+    /*
     //Add an order controller
     @RequestMapping(value="/AddOrder",method=RequestMethod.POST)
     public void addOrder(@RequestBody OrderInfo orderDetails){
@@ -27,9 +29,12 @@ public class OrderController {
         orderX.set_info(orderDetails);
         orderService.addOrder(orderX);
     }
-
+    */
     @GetMapping(path = "/GetOrders")
     public List getOrders(){
         return orderService.getAllOrders();
     }
+
+
+
 }
