@@ -51,4 +51,13 @@ public class OrderService {
     public Class<? extends Annotation> annotationType() {
         return null;
     }
+
+    public List<Order> findAllOrders() {
+        return orderRepository.findAllOrders();
+    }
+
+    public List<Order> getOrdersByCourierId(Long courier_id) {
+        System.out.println(courier_id);
+        return orderRepository.findOrderCourier_id(courier_id);
+    }
 }

@@ -13,12 +13,17 @@ import java.util.Optional;
 @Repository
 public interface OrderRepository extends JpaRepository<Order, Long>{
 
-    @Query(value = "select * from Orders where id like ?1", nativeQuery = true)
+    @Query(value = "select * from orders where id like ?1", nativeQuery = true)
     Optional<Order> findOrderById(Long id);
 
-    @Query(value = "select * from Orders", nativeQuery = true)
+    @Query(value = "select * from orders", nativeQuery = true)
     List<Order> findAllOrders();
 
-    @Query(value = "select * from Orders where courier_id like ?1", nativeQuery = true)
-    Optional<Order> findOrderByCourier_id(Long id);
+    @Query(value = "select * from orders where courier_id like :courier_id", nativeQuery = true)
+    Optional<Order> findOrderByCourier_id(Long courier_id);
+
+    @Query(value = "select * from orders where courier_id like :courier_id", nativeQuery = true)
+    List<Order> findOrderCourier_id(Long courier_id);
+
+
 }

@@ -47,7 +47,7 @@ class OrderServiceTest {
         test_order_details.setCoordinatesClient(new float[]{1,2});
         test_order_details.setPickUp_name("KFC");
 
-        test_order.set_info(test_order_details);
+        //test_order.set_info(test_order_details);
         test_order.setId(1);
         test_order.setCourier_id(1);
 
@@ -65,7 +65,7 @@ class OrderServiceTest {
         test_order_details2.setCoordinatesClient(new float[]{4,5});
         test_order_details2.setPickUp_name("BK");
 
-        test_order2.set_info(test_order_details2);
+        //test_order2.set_info(test_order_details2);
         test_order2.setId(2);
         test_order2.setCourier_id(1);
 

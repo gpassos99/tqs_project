@@ -43,13 +43,13 @@ public class CourierController {
     public Order getCourierOrder(@PathVariable("courierId") Long courierId){
         return orderService.getCourierOrder(courierId);
     }
-
+    /*
     //receive order
     @GetMapping(path = "/GetOrder/{gpsCoordinates}/{courierId}")
     public void getOrder(@PathVariable("gpsCoordinates") float[] courierCoordinates, @PathVariable("courierId") long courierId){
         courierService.assignOrder(courierCoordinates, courierId);
     }
-
+    */
     //delete account of courier
     @DeleteMapping(path = "/Delete/{courierId}")
     public void deleteCourier(@PathVariable("courierId") Long courierId){
@@ -114,8 +114,15 @@ public class CourierController {
 
     //home page
     @GetMapping (value = "/home")
-    public String home() {
+    public String home(Model model) {
+        model.addAttribute("listOrders", orderService.findAllOrders());
         return "home";
+    }
+
+    @GetMapping (value = "/home/{courier_id}")
+    public String orderByCourier_page(@PathVariable("courier_id") Long courier_id, Model model) {
+        model.addAttribute("listOrdersByCourier", orderService.getOrdersByCourierId(courier_id));
+        return "previousOrders";
     }
 
   }

@@ -26,7 +26,7 @@ public class CourierService {
         this.courierRepository = courierRepository;
         this.orderRepository = orderRepository;
     }
-
+/*
     public void assignOrder(float[] gpsCords, long id){
         Optional<Courier> courierOptional = courierRepository.findCourierById(id);
         if (courierOptional.isPresent()){
@@ -38,7 +38,7 @@ public class CourierService {
             throw new IllegalStateException("Invalid User");
         }
     }
-
+*/
     public void addNewCourier(Courier courier) {
         Optional<Courier> courierOptional = courierRepository.findCourierByEmail(courier.getEmail());
         if (courierOptional.isPresent()){
@@ -73,7 +73,7 @@ public class CourierService {
         double y = Math.pow(y2-y1, 2);
         return Math.sqrt(x+y);
     }
-
+/*
     public Order nearestOrder (float[] coordinate, List<Order> orders) {
 
         HashMap<Long, float[][]> orders_points = new HashMap<>();
@@ -101,7 +101,7 @@ public class CourierService {
         return orderRepository.findOrderById(closest_id).get();
 
     }
-
+*/
     public Courier save(Courier courier) {
         return courierRepository.save(courier);
     }

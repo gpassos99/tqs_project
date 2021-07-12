@@ -17,9 +17,60 @@ public class Order {
     @Column(name = "Active")
     private boolean active;
 
-    @Column(name = "OrderInfo")
-    private OrderInfo info;
+    @Column(name = "client")
+    private String client;
 
+    @Column(name = "coordinatesPickUp")
+    private float coordinatesPickUp;
+
+    @Column(name = "coordinatesClient")
+    private float coordinatesClient;
+
+    @Column(name = "pickUp_Name")
+    private String pickUp_Name;
+
+    //private OrderInfo info;
+
+    public String getClient() {
+        return client;
+    }
+
+    public void setClient(String client) {
+        this.client = client;
+    }
+
+    public float getCoordinatesPickUp() {
+        return coordinatesPickUp;
+    }
+
+    public void setCoordinatesPickUp(float coordinatesPickUp) {
+        this.coordinatesPickUp = coordinatesPickUp;
+    }
+
+    public float getCoordinatesClient() {
+        return coordinatesClient;
+    }
+
+    public void setCoordinatesClient(float coordinatesClient) {
+        this.coordinatesClient = coordinatesClient;
+    }
+
+    public String getPickUp_Name() {
+        return pickUp_Name;
+    }
+
+    public void setPickUp_Name(String pickUp_Name) {
+        this.pickUp_Name = pickUp_Name;
+    }
+
+   /* public OrderInfo getInfo() {
+        return info;
+    }
+
+    public void setInfo(OrderInfo info) {
+        this.info = info;
+    }
+    */
     public boolean isActive() {
         return active;
     }
@@ -42,6 +93,7 @@ public class Order {
 
     public void setId(long id) { this.id = id; }
 
+    /*
     public void set_info(OrderInfo info){
         this.info = info;
     }
@@ -49,9 +101,9 @@ public class Order {
     public OrderInfo get_info(){
         return this.info;
     }
-
+    */
     public Order(){}
-
+    /*
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -63,6 +115,6 @@ public class Order {
     @Override
     public int hashCode() {
         return Objects.hash(id, courier_id, active, info);
-    }
+    }*/
 }
 

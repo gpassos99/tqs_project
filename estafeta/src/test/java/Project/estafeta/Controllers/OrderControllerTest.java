@@ -59,7 +59,7 @@ class OrderControllerTest {
 
 
 
-        test_order.set_info(test_order_details);
+        //test_order.set_info(test_order_details);
         test_order.setId(1);
 
         order_list.add(test_order);
@@ -76,7 +76,7 @@ class OrderControllerTest {
         test_order_details2.setCoordinatesClient(new float[]{(float) 1.11, (float) 2.2});
         test_order_details2.setPickUp_name("KFC");
 
-        test_order2.set_info(test_order_details);
+        //test_order2.set_info(test_order_details);
         test_order2.setId(2);
 
         order_list.add(test_order2);

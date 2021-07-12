@@ -14,11 +14,9 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="orders : ${listOrders}">
+    <tr th:each="orders : ${listOrdersByCourier}">
         <td><span th:text="${orders.id}"> Order ID </span></td>
         <td><span th:text="${orders.courier_id}"> Courier ID </span></td>
-        <td><span th:action="${orders.courier_id}"> Courier ID </span></td>
-
     </tr>
     </tbody>
 </table>
