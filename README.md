@@ -8,10 +8,10 @@ EatsDelivery is an app like Uber Eats that allows users to order food from resta
 
 # Project Team
 
-Team Coordinator - Marta Ferreira
-Product Owner - Luís Valentim
-DevOps Master - Gonçalo Passos
-QA Engineer - João Vasconcelos, Rita Ferrolho
+Team Coordinator - [Marta Ferreira](https://github.com/martasferreira) <br>
+Product Owner - [Luís Valentim](https://github.com/LuisValentim1) <br>
+DevOps Master - [Gonçalo Passos](https://github.com/gpassos99) <br>
+QA Engineer - [João Vasconcelos](https://github.com/joaopvasconcelos99), [Rita Ferrolho](https://github.com/ritamf) <br>
 
 # Instructions
 
