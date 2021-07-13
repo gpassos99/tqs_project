@@ -43,9 +43,9 @@ mysql> insert into products (product_id, product_name, price, description, resta
 mysql> insert into products (product_id, product_name, price, description, restaurant_id, image) values (2, "Big Tasty", 1.50, "Hamburguer", 2, "/images/mcdonalds/006_bigtasty_04_double_label.png");
 
 # Documentation
-[Product Specification Report](https://www.google.com)
-[QA Manual](https://www.google.com)
-[Shared Google Drive](https://drive.google.com/drive/folders/1zjzcV6-d80Iu5UTQMAQvateI-lRDypWi)
+[Product Specification Report](https://www.google.com) <br>
+[QA Manual](https://www.google.com) <br>
+[Shared Google Drive](https://drive.google.com/drive/folders/1zjzcV6-d80Iu5UTQMAQvateI-lRDypWi) <br>
 
 # API Documentation
 [API Endpoints](https://www.google.com)
