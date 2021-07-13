@@ -13,6 +13,15 @@ Product Owner - [Luís Valentim](https://github.com/LuisValentim1) <br>
 DevOps Master - [Gonçalo Passos](https://github.com/gpassos99) <br>
 QA Engineer - [João Vasconcelos](https://github.com/joaopvasconcelos99), [Rita Ferrolho](https://github.com/ritamf) <br>
 
+# Documentation
+[Product Specification Report](https://github.com/gpassos99/tqs_project/blob/main/Documentation/Project%20Assignment%20Report.pdf) <br>
+[QA Manual](https://github.com/gpassos99/tqs_project/blob/main/Documentation/QA%20Manual.pdf) <br>
+[Shared Google Drive](https://drive.google.com/drive/folders/1zjzcV6-d80Iu5UTQMAQvateI-lRDypWi) <br>
+
+# API Documentation
+[API Endpoints](https://github.com/gpassos99/tqs_project/blob/main/Documentation/Project%20Assignment%20Report.pdf)
+
+
 # Instructions
 
 ## 1st: On terminal:
@@ -42,34 +51,8 @@ mysql> insert into restaurant (restaurant_id, restaurant_name, lat, lon, image) 
 mysql> insert into products (product_id, product_name, price, description, restaurant_id, image) values (1, "CheeseBurger", 1, "Hamburguer", 1, "/images/mcdonalds/t-mcdonalds-Cheeseburger.jpg");
 mysql> insert into products (product_id, product_name, price, description, restaurant_id, image) values (2, "Big Tasty", 1.50, "Hamburguer", 2, "/images/mcdonalds/006_bigtasty_04_double_label.png");
 
-# Documentation
-[Product Specification Report](https://www.google.com) <br>
-[QA Manual](https://www.google.com) <br>
-[Shared Google Drive](https://drive.google.com/drive/folders/1zjzcV6-d80Iu5UTQMAQvateI-lRDypWi) <br>
 
-# API Documentation
-[API Endpoints](https://www.google.com)
 
-# EatsDelivery Endpoints:
-
-GET / - Login page
-GET /register_client - Register page<br>
-POST /register_client - Gets a valid Client profile and registers it within the database.<br>
-POST /login_client - Gets credentials, verifies them and if they’re correct redirects to the home page.<br>
-GET /{username}/EatsDelivery/home - Home page.<br>
-GET /{username}/EatsDelivery/home/{keyword} - Search restaurant by {keyword}.<br>
-GET /{username}/EatsDelivery/home/restaurants/{restaurant_id} - Gives all available products for a restaurant with {restaurant_id}.<br>
-GET /{username}/EatsDelivery/home/restaurants/{restaurant_id}/{keyword} - Searches for a specific item {keyword} within a certain restaurant with {restaurant_id}.<br>
-GET /{username}/EatsDelivery/user - User active orders and orders history.<br>
-
-# Couriers API Endpoints:
-
-GET /api/courier - Courier Login page. <br>
-GET /api/courier/register_courier - Courier register page. <br>
-POST /api/courier/register_courier - Gets a valid Courier profile and registers it within the database. <br>
-POST /api/courier/login_courier - Courier Logs in. <br>
-GET /api/courier/home/{courier_id}  -  Retrieves a list with all active orders. <br>
-GET /api/courier/orders/{courier_id}  -  Retrieves a list with the orders of a particular courier with {courier_id}. <br>
 
 
 
