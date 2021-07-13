@@ -1,4 +1,4 @@
-# tqs_project
+# EatsDelivery
 
 
 
@@ -26,14 +26,14 @@ mysql> create db eatsdelivery;
 
 ## 3rd: Insert a few orders:
 
-mysql> insert into orders(id, active, client, coordinates_client, coordinates_pick_up, courier_id, pick_up_name) values (1, 1, "Jorge", 60, 40, "0", "KFC");
+mysql> insert into orders(id, active, client, coordinates_client, coordinates_pick_up, courier_id, pick_up_name) values (1, 1, "Jorge", 60, 40, "0", "KFC");<br>
 mysql> insert into orders(id, active, client, coordinates_client, coordinates_pick_up, courier_id, pick_up_name) values (2, 1, "Manuel", 40, 20, "0", "McDonalds Aveiro");
 
 ## 4th: Insert restaurants:
 
-mysql> insert into restaurant (restaurant_id, restaurant_name, lat, lon, image) values (1, "McDonalds Aveiro", 50.0, 50.0, "/images/restaurants/mcdonalds.png");
-mysql> insert into restaurant (restaurant_id, restaurant_name, lat, lon, image) values (2, "KFC Glicínias", 100.0, 60.0, "/images/restaurants/kfc.png");
-mysql> insert into restaurant (restaurant_id, restaurant_name, lat, lon, image) values (3, "Burger King Glicínias", 40.63, -8.65, "/images/restaurants/bk.jpg");
+mysql> insert into restaurant (restaurant_id, restaurant_name, lat, lon, image) values (1, "McDonalds Aveiro", 50.0, 50.0, "/images/restaurants/mcdonalds.png");<br>
+mysql> insert into restaurant (restaurant_id, restaurant_name, lat, lon, image) values (2, "KFC Glicínias", 100.0, 60.0, "/images/restaurants/kfc.png");<br>
+mysql> insert into restaurant (restaurant_id, restaurant_name, lat, lon, image) values (3, "Burger King Glicínias", 40.63, -8.65, "/images/restaurants/bk.jpg");<br>
 mysql> insert into restaurant (restaurant_id, restaurant_name, lat, lon, image) values (4, "Pizza Hut Fórum Aveiro", 40.64, -8.65, "/images/restaurants/pizzahut.png");
 
 
@@ -41,6 +41,14 @@ mysql> insert into restaurant (restaurant_id, restaurant_name, lat, lon, image) 
 
 mysql> insert into products (product_id, product_name, price, description, restaurant_id, image) values (1, "CheeseBurger", 1, "Hamburguer", 1, "/images/mcdonalds/t-mcdonalds-Cheeseburger.jpg");
 mysql> insert into products (product_id, product_name, price, description, restaurant_id, image) values (2, "Big Tasty", 1.50, "Hamburguer", 2, "/images/mcdonalds/006_bigtasty_04_double_label.png");
+
+# Documentation
+[Product Specification Report](https://www.google.com)
+[QA Manual](https://www.google.com)
+[Shared Google Drive](https://drive.google.com/drive/folders/1zjzcV6-d80Iu5UTQMAQvateI-lRDypWi)
+
+# API Documentation
+[API Endpoints](https://www.google.com)
 
 # EatsDelivery Endpoints:
 
