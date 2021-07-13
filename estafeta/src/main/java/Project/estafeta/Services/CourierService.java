@@ -26,7 +26,8 @@ public class CourierService {
         this.courierRepository = courierRepository;
         this.orderRepository = orderRepository;
     }
-/*
+
+    /**
     public void assignOrder(float[] gpsCords, long id){
         Optional<Courier> courierOptional = courierRepository.findCourierById(id);
         if (courierOptional.isPresent()){
@@ -38,7 +39,8 @@ public class CourierService {
             throw new IllegalStateException("Invalid User");
         }
     }
-*/
+    */
+
     public void addNewCourier(Courier courier) {
         Optional<Courier> courierOptional = courierRepository.findCourierByEmail(courier.getEmail());
         if (courierOptional.isPresent()){

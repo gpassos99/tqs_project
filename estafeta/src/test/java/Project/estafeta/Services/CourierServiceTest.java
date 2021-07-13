@@ -42,21 +42,43 @@ class CourierServiceTest {
     void setup(){
         testCourier = new Courier("Zé", "zecourier@gmail.com");
         testCourier.setId(new Long(1));
+        possibleCourier = Optional.of(testCourier);
         courier_service = new CourierService(courierRepository, orderRepository);
+    }
+
+    @Test
+    void update_courier_on_existing_courier_changes_courier_values(){
+        courier_service.addNewCourier(testCourier);
+
+        when(courierRepository.findCourierById(testCourier.getId())).thenReturn(possibleCourier);
+
+        courier_service.updateCourier(testCourier.getId(), "Carlos", "carloscourier@gmail.com");
+
+        assertTrue(testCourier.getName() == "Carlos");
+    }
+
+    @Test
+    void deleting_non_existing_couriers_throws_illegal_state_exception(){
+
+        when(courierRepository.existsById(new Long(2))).thenReturn(false);
+
+        assertThrows(IllegalStateException.class, () -> {
+            courier_service.deleteCourier(new Long(2));
+        });
     }
 
     /**
      @Test
      void if_courier_already_exists_throw_exception(){
-     Courier secondTestCourier = new Courier("Zé", "zecourier@gmail.com");
+         Courier secondTestCourier = new Courier("Zé", "zecourier@gmail.com");
 
-     courier_service.addNewCourier(testCourier);
+         when(courierRepository.findCourierByEmail(testCourier.getEmail())).thenReturn(possibleCourier);
 
-     when(courierRepository.findCourierByEmail(testCourier.getEmail())).thenReturn(possibleCourier);
+         courier_service.addNewCourier(testCourier);
 
-     assertThrows(IllegalStateException.class, () -> {
-     courier_service.addNewCourier(secondTestCourier);
-     });
+         assertThrows(IllegalStateException.class, () -> {
+         courier_service.addNewCourier(secondTestCourier);
+        });
      }*/
 
 }
