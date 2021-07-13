@@ -41,14 +41,43 @@ class CourierControllerTest {
     @MockBean
     private CourierService courier_service;
 
+    @MockBean
+    private OrderService order_service;
+
     private LocalDate courierBirthday;
     private Courier testCourier;
+    private Order testOrder;
     private JSONObject obj;
 
     @BeforeEach
     void setup(){
         courierBirthday = LocalDate.of(1999, 01,02);
         testCourier = new Courier("Zé", "zecourier@gmail.com");
+        testOrder = new Order();
+    }
+
+    /**
+    @Test
+    void order_courier_id_returns_all_orders(){
+        testOrder.setCourier_id(1);
+        Order secondOrder = new Order();
+        secondOrder.setCourier_id(1);
+
+        List<Order> orderList = new ArrayList<>();
+        orderList.add(testOrder);
+        orderList.add(secondOrder);
+
+        when(order_service.getOrdersByCourierId(new Long(1))).thenReturn(orderList);
+
+        try {
+            mvc.perform(get("/api/courier/Order/1")
+                    .contentType(MediaType.APPLICATION_JSON))
+                    .andExpect(status().isOk())
+                    .andExpect(jsonPath("$", hasSize(2)));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     @Test
@@ -67,10 +96,5 @@ class CourierControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(2)));
     }
-
-    @Test
-    void truetest(){
-        assertTrue(true);
-    }
-
+    */
 }
